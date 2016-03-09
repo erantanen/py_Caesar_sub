@@ -1,0 +1,49 @@
+# Simple Caesar substitution
+#
+#
+
+# Caesar Strings before after
+
+
+# s = "gandalf"      # tnaqnys
+# s = "hello world"  # uryyb jbeyq
+# s = "this is a crazy world" #guvf vf n penml jbeyq
+s = "guvf vf n penml jbeyq"
+
+
+def alpha_mapping(shift):
+    alfa_list = list(map( chr, range(97, 123)))
+    num_list = list(range(97+shift, 123+shift))
+    return list(zip( alfa_list, num_list))
+
+
+
+def alpha_process(inData, mapping):
+    temp_list = []
+    flag_end = 122  # z's ascii number
+    flag_begin = 26 # 26 numbers to alphebet
+
+    for elm in s:
+        if elm == " ":
+            print()
+            temp_list.append(" ")
+        else:
+            f = dict(k)[elm]
+            if f > flag_end:
+                t = f - flag_end
+                mod_f = chr(f-flag_begin)
+                print(elm, f, t, mod_f)
+                temp_list.append(mod_f)
+            else:
+                print(elm, f, "-", chr(f))
+                temp_list.append(chr(f))
+    return temp_list
+
+
+
+# very generalized and still very open
+# change the number to mod the mapping (Caesar is 13)
+k = alpha_mapping(13)
+# ----------------------------
+blah = alpha_process(s, k)
+print("".join(blah))
